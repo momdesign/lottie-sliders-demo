@@ -28,8 +28,8 @@ const animationData: AnimationConfig = {
 // Animation segments points with proper typing
 const animationPoints: Record<number, number> = {
   0: 0,
-  1: 80,
-  2: 0,
+  1: 60,
+  2: 120,
 };
 
 let currentAnimationIndex = 0;
