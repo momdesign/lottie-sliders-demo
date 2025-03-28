@@ -3,7 +3,6 @@ import lottie from 'lottie-web';
 
 const lottieFixItem = document.querySelector<HTMLDivElement>('#lottie')!;
 const sliderWrapper = document.querySelector<HTMLDivElement>('.slider-wrapper')!;
-const slider = document.querySelector<HTMLDivElement>('.slider')!;
 const slides = document.querySelectorAll<HTMLDivElement>('.slide');
 const currentFrameEl = document.querySelector<HTMLSpanElement>('#current-frame')!;
 const currentSegmentEl = document.querySelector<HTMLSpanElement>('#current-segment')!;
