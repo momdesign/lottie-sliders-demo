@@ -23,7 +23,7 @@ const animationData: AnimationConfig = {
   loop: false,
   autoplay: false,
   path: 'https://assets3.lottiefiles.com/packages/lf20_zrbrn8e8.json'
-};
+}; 
 
 // Animation segments points with proper typing
 const animationPoints: Record<number, number> = {
