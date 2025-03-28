@@ -22,14 +22,14 @@ const animationData: AnimationConfig = {
   renderer: 'svg',
   loop: false,
   autoplay: false,
-  path: 'https://assets3.lottiefiles.com/packages/lf20_zrbrn8e8.json'
+  path: './anim.json'
 }; 
 
 // Animation segments points with proper typing
 const animationPoints: Record<number, number> = {
   0: 0,
-  1: 120,
-  2: 180,
+  1: 80,
+  2: 0,
 };
 
 let currentAnimationIndex = 0;
