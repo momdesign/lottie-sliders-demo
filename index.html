@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lottie Demo</title>
+  </head>
+  <body>
+    <section style="min-height: 20vh;">
+      Slider with fixed animation breakpoints
+    </section>
+    <section>
+      <div class="slider-wrapper">
+        <div class="slider">
+          <div class="container">
+            <h1>The Current Workday Is Unsustainable</h1>
+            <p>Our data shows that the typical workday is last-minute, distracted, constantly interrupted, and increasingly seeping into leisure time.</p>
+          </div>
+          <div class="slider-inner">
+            <div id="lottie"></div>
+            <div class="slides">
+              <div class="slide" data-slide="0">
+                <h2>4.8 minutes</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+              </div>
+              <div class="slide" data-slide="1">
+                <h2>2 hours</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+              </div>
+              <div class="slide" data-slide="2">
+                <h2>26 days</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section style="min-height: 20vh;">End Section</section>
+
+    <div id="info-panel">
+      <div>Current Frame: <span id="current-frame">0</span></div>
+      <div>Current Segment: <span id="current-segment">0</span></div>
+      <div>Scroll Percentage: <span id="scroll-percentage">0%</span></div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
