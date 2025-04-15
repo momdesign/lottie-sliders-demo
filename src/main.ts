@@ -17,24 +17,55 @@ type AnimationConfig = {
   path: string;
 };
 
-const animationData: AnimationConfig = {
-  container: lottieFixItem,
-  renderer: 'svg',
-  loop: false,
-  autoplay: false,
-  path: './JW_MSWT_Infographic02_A-B_041125.json'
-}; 
+// Define animation segments configuration
+type AnimationSegment = {
+  path: string;
+  startFrame: number;
+  endFrame: number;
+};
+
+const animations: AnimationSegment[] = [
+  {
+    path: './JW_MSWT_Infographic02_A-B_041125.json',
+    startFrame: 0,
+    endFrame: 60
+  },
+  {
+    path: './JW_MSWT_Infographic02_B-C_041125.json',
+    startFrame: 0,
+    endFrame: 60
+  }
+];
 
 // Animation segments points with proper typing
 const animationPoints: Record<number, number> = {
   0: 0,
   1: 60,
-  2: 130,
+  2: 60, // End frame of second animation
 };
 
 let currentAnimationIndex = 0;
 let isInStickyRange = false;
-const animation = lottie.loadAnimation(animationData);
+let currentAnimation: any = null;
+
+const loadAnimation = (config: AnimationConfig) => {
+  if (currentAnimation) {
+    currentAnimation.destroy();
+  }
+  currentAnimation = lottie.loadAnimation(config);
+  return currentAnimation;
+};
+
+// Initial animation load
+const animationData: AnimationConfig = {
+  container: lottieFixItem,
+  renderer: 'svg',
+  loop: false,
+  autoplay: false,
+  path: animations[0].path
+};
+
+let animation = loadAnimation(animationData);
 
 // Update the info panel with current animation state
 const updateInfoPanel = (currentFrame: number, segmentIndex: number, scrollPercentage: number) => {
@@ -57,7 +88,29 @@ const updateActiveSlide = (index: number) => {
 // Function to animate with segment snapping
 const animateWithSnapping = (newIndex: number) => {
   if (currentAnimationIndex !== newIndex) {
-    animation.playSegments([animationPoints[currentAnimationIndex], animationPoints[newIndex]], true);
+    const animationFileIndex = Math.min(Math.floor(newIndex / 2), animations.length - 1);
+    
+    // Check if we need to switch animation files
+    if (Math.floor(currentAnimationIndex / 2) !== animationFileIndex) {
+      // Load new animation file
+      const newAnimationData: AnimationConfig = {
+        ...animationData,
+        path: animations[animationFileIndex].path
+      };
+      animation = loadAnimation(newAnimationData);
+      
+      // Reattach event listener for the new animation
+      animation.addEventListener('enterFrame', () => {
+        updateInfoPanel(animation.currentFrame, currentAnimationIndex, calculateStickyProgress());
+      });
+    }
+    
+    // Calculate which frames to play based on the segment
+    const isSecondHalf = newIndex % 2 === 1;
+    const startFrame = isSecondHalf ? animations[animationFileIndex].startFrame : animations[animationFileIndex].startFrame;
+    const endFrame = isSecondHalf ? animations[animationFileIndex].endFrame : animations[animationFileIndex].endFrame;
+    
+    animation.playSegments([startFrame, endFrame], true);
     currentAnimationIndex = newIndex;
     updateActiveSlide(newIndex);
   }
@@ -106,7 +159,6 @@ const handleScroll = () => {
   const segmentSize = 1 / totalSegments;
   
   // Calculate which segment to show based on the progress
-  // Now each segment gets an equal portion of the scroll distance
   const newIndex = Math.min(
     Math.floor(progress / segmentSize),
     totalSegments - 1
@@ -120,13 +172,7 @@ const handleScroll = () => {
   updateInfoPanel(animation.currentFrame, newIndex, progress);
 };
 
-// Keep track of animation frame updates
-animation.addEventListener('enterFrame', () => {
-  updateInfoPanel(animation.currentFrame, currentAnimationIndex, calculateStickyProgress());
-});
-
-// Initialize the animation once it's loaded
-animation.addEventListener('data_ready', () => {
+const initializeAnimation = () => {
   // Set initial state
   animation.goToAndStop(animationPoints[0], true);
   updateActiveSlide(0);
@@ -137,6 +183,14 @@ animation.addEventListener('data_ready', () => {
   
   // Run once to set initial state
   handleScroll();
+};
+
+// Keep track of animation frame updates
+animation.addEventListener('enterFrame', () => {
+  updateInfoPanel(animation.currentFrame, currentAnimationIndex, calculateStickyProgress());
 });
+
+// Initialize the animation once it's loaded
+animation.addEventListener('data_ready', initializeAnimation);
 
 export {};
