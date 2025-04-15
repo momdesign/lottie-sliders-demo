@@ -1,16 +1,52 @@
 @font-face {
-  font-family: 'Segoe Pro';
+  font-family: 'Segoe Pro Condensed';
   src: url('/SegoePro-CondRegular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Segoe Pro';
+  font-family: 'Segoe Pro Condensed';
   src: url('/SegoePro-CondBold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Segoe Pro';
+  src: url('/SegoePro-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe Pro';
+  src: url('/SegoePro-Semilight.ttf') format('truetype');
+  font-weight: 350;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe Pro';
+  src: url('/SegoePro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe Pro';
+  src: url('/SegoePro-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Segoe Pro';
+  src: url('/SegoePro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 
 :root {
   font-family: 'Segoe Pro', system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -19,6 +55,7 @@
   font-size: 18px;
   color: white !important;
   background-color: #006CBF !important;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -37,7 +74,7 @@ body {
 }
 
 h1 {
-  font-family: 'Segoe Pro', sans-serif;
+  font-family: 'Segoe Pro Condensed', sans-serif;
   font-weight: 700;
   font-size: 80px;
   line-height: 1.1;
@@ -175,18 +212,35 @@ section {
   display: flex;
   flex-direction: column;
   margin-left: 40px;
-  width: 250px;
+  width: 300px;
+  position: relative;
 }
 
-.slides h2 {
-  margin: 0;
-  font-size: 40px;
+.slide {
+  position: absolute;
+  top: -8px;
+  padding-left: 100px;
+}
+
+.slide:before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 13px;
+  width: 100px;
+  height: 1px;
+  background-color: white;
+}
+
+.slide h2 {
+  margin: 0 0 34px;
+  font-size: inherit;
   color: white !important;
   font-family: 'Segoe Pro', sans-serif;
   font-weight: 700;
 }
 
-.slides p {
+.slide p {
   color: white !important;
   font-family: 'Segoe Pro', sans-serif;
   font-weight: 400;

@@ -22,14 +22,14 @@ const animationData: AnimationConfig = {
   renderer: 'svg',
   loop: false,
   autoplay: false,
-  path: './anim.json'
+  path: './JW_MSWT_Infographic02_A-B_041125.json'
 }; 
 
 // Animation segments points with proper typing
 const animationPoints: Record<number, number> = {
   0: 0,
   1: 60,
-  2: 120,
+  2: 130,
 };
 
 let currentAnimationIndex = 0;
