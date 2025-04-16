@@ -22,7 +22,7 @@ const animationData: AnimationConfig = {
   renderer: 'svg',
   loop: false,
   autoplay: false,
-  path: './JW_MSWT_Infographic02_A-B-C_041525.json'
+  path: './JW_MSWT_Infographic02_A-B-C_WhiteOutline_with_Text_041625.json'
 }; 
 
 // Animation segments points with proper typing
