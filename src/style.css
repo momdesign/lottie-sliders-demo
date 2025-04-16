@@ -54,7 +54,7 @@
   font-weight: 400;
   font-size: 18px;
   color: white !important;
-  background-color: #006CBF !important;
+  background-color: #2A446F !important;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -149,7 +149,6 @@ button:focus-visible {
 #lottie {
   width: 800px;
   height: 800px;
-  background-color: #fff;
 }
 
 #info-panel {
@@ -192,7 +191,7 @@ section {
 .slider {
   min-height: 100vh;
   position: sticky;
-  top: 0;
+  top: -340px;
   display: flex;
   flex-direction: column;
   align-items: center;
